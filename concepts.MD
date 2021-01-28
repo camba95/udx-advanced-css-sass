@@ -35,7 +35,7 @@ Faster and smallers webs
 - Less images
 - Compress images
 
-### Cascade
+## Cascade
 
 Process of combining different stylesheets and resolving conflicts when more than one rule applies to a certain element.
 
@@ -64,3 +64,42 @@ Process of combining different stylesheets and resolving conflicts when more tha
 - Universal selector `*` has not specificity (0, 0, 0, 0)
 - Rely more on `specificity` than on the `order` of selectors
 - But, rely on `order` when using 3rd-party stylesheets (put your stylesheet last)
+
+## Value Processing
+
+Following, how units are converted from relative to absolute (`px`), take into account `%` is not an unit yet we include it here.
+
+```css
+html,
+body {
+  font-size: 16px;
+  width: 80vw;
+}
+
+.header {
+  font-size: 150%;
+  padding: 2em;
+  margin-bottom: 10rem;
+  height: 90vh;
+  width: 1000px;
+}
+
+.header-child {
+  font-size: 3em;
+  padding: 10%;
+}
+```
+| Unit           | Example                  | How to convert                         | Result (`px`)          |
+| -------------- | ------------------------ | -------------------------------------- | ---------------------- |
+| `%` (font)     | `font-size: 150%`        | `x%` * parent's computed font-size     | (16 * 1.5) = 24px      |
+| `%` (length)   | `padding: 10%`           | `x%` * parent's computed width         | (1000 * 1/10) = 100px  |
+| `em` (font)    | `font-size: 3em`         | `x` * parent's computed font-size      | (24 * 3) = 72px        |
+| `em` (length)  | `padding: 2em`           | `x` * current elem computed font-size  | (24 * 2) = 48px        |
+| `rem`          | `margin-bottom: 10rem`   | `x` * root computed font-size          | (16 * 10) = 160px      |
+| `vh`           | `height: 90vh`           | `x` * 1% viewport height               | 90% of viewport height |
+| `vw`           | `width: 80vw`            | `x` * 1% viewport width                | 80% of viewport width  |
+
+**Note:** Some extra information you need to know:
+- Each property has an initial value, used if nothing is declared and if there is no inheritance
+- Browsers specify a **root font-size** fer each page (usually `16px`)
+- Percentages and relative values are always converted to pixels
