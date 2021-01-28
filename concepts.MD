@@ -192,3 +192,24 @@ Determine how boxes are layout in a page.
 ### Stacking Contexts
 
 Solves the problem of overlaped elements occuping the same space. Determines in which order elements are rendered in the page, `z-index` is the most widely known property that creates stacking contexts (there are others) and it works with `relative` and `absolute` positions.
+
+## CSS Architecture
+
+### Think - Component Driven Design
+
+Think of the page in terms of modular components.
+
+- Components are the building blocks to construct interfaces.
+- They should be reusable and independent (even from parent element)
+
+### Build - BEM
+
+Block Element Modifier, strategy for naming CSS classes, `.block__element--modifier {}`
+
+- Block: standalone component that is meaningful on its own (`recipe`, `header`, `btn`)
+- Element: part of a block that has no standalone meaning (`recipe__hero`, `header__title`)
+- Modifier: a different version of a block or element (`btn--round`, `recipe__hero--large`, `recipe__hero--small`)
+
+### Architect - 7-1 Pattern
+
+7 different folders for partial Sass files and 1 main Sass file to import all of the other files into a compiled CSS stylesheet. These folders are: base, components, layout, pages, themes, abstracts, vendors.
