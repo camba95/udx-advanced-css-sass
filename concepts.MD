@@ -113,3 +113,82 @@ body {
 - The computed value is what gets inherited, not the declared value
 - Inheritance only works if someone declares a value for that property, it does not work with initial values
 - `inherit` keyword forces inheritance (allowed properties) and `initial` keyword resets a property to its initial value
+
+## Visual Formatting Model
+
+Algorithm that calculates boxes and determines the layout of each of them in the render tree, in order to determine the final layout of the page.
+
+- Dimensions of bozes: box model
+- Box type: inline, block
+- Positioning scheme: floats and positioning
+- Stacking contexts
+- Other elements in the render tree
+- Viewport size, dimensions of images, etc
+
+### Box Model
+
+Helps define how elements are displayed in the page and how they are sized. Each element in the page can be seen as a rectangle box.
+
+- Content: text, images, etc
+- Padding: transparent area around context inside the box
+- Border: goes around the padding and content
+- Margin: space between boxes
+- Fill area: content + padding + border, area affected with backgroung color
+
+The default box model calculates the width and height in the following way:
+
+- **Toltal width:** right border + right padding + specified width + left padding + left border
+- **Toltal height:** top border + top padding + specified height + bottom padding + bottom border
+
+A good practice to simplify this is to use `box-sizing: border-box;`, now defined width and height include the padding and border, and also the inner width of the contect area will be reduced to give space to padding and border.
+
+- **Toltal width:** specified width
+- **Toltal height:** specified height
+
+### Box Types
+
+Determine how boxes are layout in a page.
+
+- Block-level boxes: defined by `display: block`, but also `flex`, `list-item`, `table` values produces block level boxes
+
+  - Elements formatted as blocks
+  - Take 100% of parent's width
+  - Line break, vertically aligned
+  - Box model from the section before
+
+- Inline boxes: defined by `display: inline`
+
+  - Content distributed in lines
+  - Occupies only content's space
+  - No line breaks, no heigth, no width (box model)
+  - Horizontal paddings and margins only (box model)
+
+- Inline-block boxes: defined by `display: inline-block`
+  - A mix of block and inline
+  - Occupies only content's space (inline)
+  - No line breaks (inline)
+  - Box model from the section before (block)
+
+### Positioning Schemes
+
+- Normal flow
+
+  - Default positioning scheme (default or `position: relative`)
+  - Not floated, not absolutele positioned
+  - Elements are laid out according to the order in the code
+
+- Floats: `float: left` or `float: right`
+
+  - Elements is removed from the normal flow
+  - Text and inline elements wrap around floated elements
+  - The continer will not adjust its height to floated element
+
+- Adsolute positioning
+  - Elements is removed from the normal flow
+  - No impact or surrounding elements
+  - Use `top`, `bottom`, `left`, `right` to offset the element from its relatively positioned container
+  - Absolute positioned elements overlap other elements
+
+### Stacking Contexts
+
+Solves the problem of overlaped elements occuping the same space. Determines in which order elements are rendered in the page, `z-index` is the most widely known property that creates stacking contexts (there are others) and it works with `relative` and `absolute` positions.
