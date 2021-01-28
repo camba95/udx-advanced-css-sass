@@ -89,17 +89,27 @@ body {
   padding: 10%;
 }
 ```
-| Unit           | Example                  | How to convert                         | Result (`px`)          |
-| -------------- | ------------------------ | -------------------------------------- | ---------------------- |
-| `%` (font)     | `font-size: 150%`        | `x%` * parent's computed font-size     | (16 * 1.5) = 24px      |
-| `%` (length)   | `padding: 10%`           | `x%` * parent's computed width         | (1000 * 1/10) = 100px  |
-| `em` (font)    | `font-size: 3em`         | `x` * parent's computed font-size      | (24 * 3) = 72px        |
-| `em` (length)  | `padding: 2em`           | `x` * current elem computed font-size  | (24 * 2) = 48px        |
-| `rem`          | `margin-bottom: 10rem`   | `x` * root computed font-size          | (16 * 10) = 160px      |
-| `vh`           | `height: 90vh`           | `x` * 1% viewport height               | 90% of viewport height |
-| `vw`           | `width: 80vw`            | `x` * 1% viewport width                | 80% of viewport width  |
+
+| Unit          | Example                | How to convert                         | Result (`px`)          |
+| ------------- | ---------------------- | -------------------------------------- | ---------------------- |
+| `%` (font)    | `font-size: 150%`      | `x%` \* parent's computed font-size    | (16 \* 1.5) = 24px     |
+| `%` (length)  | `padding: 10%`         | `x%` \* parent's computed width        | (1000 \* 1/10) = 100px |
+| `em` (font)   | `font-size: 3em`       | `x` \* parent's computed font-size     | (24 \* 3) = 72px       |
+| `em` (length) | `padding: 2em`         | `x` \* current elem computed font-size | (24 \* 2) = 48px       |
+| `rem`         | `margin-bottom: 10rem` | `x` \* root computed font-size         | (16 \* 10) = 160px     |
+| `vh`          | `height: 90vh`         | `x` \* 1% viewport height              | 90% of viewport height |
+| `vw`          | `width: 80vw`          | `x` \* 1% viewport width               | 80% of viewport width  |
 
 **Note:** Some extra information you need to know:
+
 - Each property has an initial value, used if nothing is declared and if there is no inheritance
 - Browsers specify a **root font-size** fer each page (usually `16px`)
 - Percentages and relative values are always converted to pixels
+
+## Inheritance
+
+- Inheritance passes values for specific properties from parents to children, maintainable code, less to code
+- No all properties can be inherited like `margin`, yet font related properties are: `font-family`, `font-size`, `color`, etc.
+- The computed value is what gets inherited, not the declared value
+- Inheritance only works if someone declares a value for that property, it does not work with initial values
+- `inherit` keyword forces inheritance (allowed properties) and `initial` keyword resets a property to its initial value
