@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "live-server",
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^1.12.4"
+    "live-server": "^1.2.1",
+    "node-sass": "^5.0.0"
   }
 }
